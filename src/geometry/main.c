@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+struct Point {
+    float x, y;
+};
+
 int main()
 {
     char prefix[] = "(geometry) ";
@@ -14,7 +18,11 @@ int main()
     char* token = strtok(input, delims);
 
     if (strcmp(token, "circle") == 0) {
+        struct Point point;
+
     } else if (strcmp(token, "triangle") == 0) {
+        struct Point points[4];
+
     } else {
         printf("Incorrect input.\n");
     }
