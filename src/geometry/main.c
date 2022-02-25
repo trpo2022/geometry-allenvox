@@ -27,6 +27,7 @@ int main()
         float radius = atof(strtok(NULL, delims));
 
         float perimeter = 2 * PI * radius;
+        float area = PI * radius * radius;
 
     } else if (strcmp(token, "triangle") == 0) {
         struct Point points[4];
