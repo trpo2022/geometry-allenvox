@@ -45,6 +45,13 @@ int main()
                    "triangle.\nCheck if your data is correct.\n");
         }
 
+        float sides[3];
+        float perimeter = 0;
+        for (int i = 0; i < 3; i++) {
+            sides[i] = calculateSide(points[i], points[i + 1]);
+            perimeter += sides[i];
+        }
+
     } else {
         printf("Incorrect input.\n");
     }
