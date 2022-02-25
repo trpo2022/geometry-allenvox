@@ -8,6 +8,13 @@ struct Point {
     float x, y;
 };
 
+float calculateSide(struct Point point1, struct Point point2)
+{
+    float x1 = point1.x, x2 = point2.x;
+    float y1 = point1.y, y2 = point2.y;
+    return sqrtf((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+}
+
 int main()
 {
     char prefix[] = "(geometry) ";
