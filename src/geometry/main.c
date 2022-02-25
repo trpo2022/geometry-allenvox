@@ -18,7 +18,7 @@ float calculateSide(struct Point point1, struct Point point2)
 int main()
 {
     char prefix[] = "(geometry) ";
-    char input[64];
+    char input[32];
 
     printf("%s", prefix);
     scanf("%[^\n]", &input);
