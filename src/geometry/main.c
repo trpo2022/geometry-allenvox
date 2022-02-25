@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define PI 3.141592653589
+
 struct Point {
     float x, y;
 };
@@ -23,6 +25,8 @@ int main()
         point.x = atof(strtok(NULL, delims));
         point.y = atof(strtok(NULL, delims));
         float radius = atof(strtok(NULL, delims));
+
+        float perimeter = 2 * PI * radius;
 
     } else if (strcmp(token, "triangle") == 0) {
         struct Point points[4];
