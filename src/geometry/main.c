@@ -47,13 +47,17 @@ float calculateTriangleArea(struct Point points[4])
     return sqrtf(area);
 }
 
-int main()
+void initInput(char* array)
 {
     char prefix[] = "(geometry) ";
-    char input[32];
-
     printf("%s", prefix);
-    scanf("%[^\n]", &input);
+    scanf("%[^\n]", array);
+}
+
+int main()
+{
+    char input[32];
+    initInput(&input);
 
     char delims[] = "( ,)";
     char* token = strtok(input, delims);
