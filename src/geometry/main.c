@@ -16,6 +16,37 @@ float calculateSide(struct Point point1, struct Point point2)
     return sqrtf((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 }
 
+float calculateCirclePerimeter(float radius)
+{
+    return 2 * PI * radius;
+}
+
+float calculateCircleArea(float radius)
+{
+    return PI * radius * radius;
+}
+
+float calculateTrianglePerimeter(struct Point points[4])
+{
+    float sides[3];
+    float perimeter = 0;
+    for (int i = 0; i < 3; i++) {
+        sides[i] = calculateSide(points[i], points[i + 1]);
+        perimeter += sides[i];
+    }
+    return perimeter;
+}
+
+float calculateTriangleArea(struct Point points[4])
+{
+    float semiperimeter = calculateTrianglePerimeter(points) / 2;
+    float area = semiperimeter;
+    for (int i = 0; i < 3; i++) {
+        area *= semiperimeter - calculateSide(points[i], points[i + 1]);
+    }
+    return sqrtf(area);
+}
+
 int main()
 {
     char prefix[] = "(geometry) ";
@@ -34,8 +65,8 @@ int main()
         point.y = atof(strtok(NULL, delims));
         float radius = atof(strtok(NULL, delims));
 
-        float perimeter = 2 * PI * radius;
-        float area = PI * radius * radius;
+        float perimeter = calculateCirclePerimeter(radius);
+        float area = calculateCircleArea(radius);
 
         printf("\tperimeter = %.3f\n", perimeter);
         printf("\tarea = %.3f\n", area);
@@ -53,23 +84,14 @@ int main()
                    "triangle.\nCheck if your data is correct.\n");
         }
 
-        float sides[3];
-        float perimeter = 0;
-        for (int i = 0; i < 3; i++) {
-            sides[i] = calculateSide(points[i], points[i + 1]);
-            perimeter += sides[i];
-        }
-
-        float semiperimeter = perimeter / 2;
-
-        float area = semiperimeter;
-        for (int i = 0; i < 3; i++) {
-            area *= semiperimeter - sides[i];
-        }
-        area = sqrtf(area);
+        float perimeter = calculateTrianglePerimeter(points);
+        float area = calculateTriangleArea(points);
 
         printf("\tperimeter = %.3f\n", perimeter);
         printf("\tarea = %.3f\n", area);
+
+    } else if (strcmp(token, "q") == 0) {
+        return 0;
 
     } else {
         printf("Incorrect input.\n");
