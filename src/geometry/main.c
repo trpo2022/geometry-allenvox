@@ -60,6 +60,9 @@ int main()
         }
         area = sqrtf(area);
 
+        printf("\tperimeter = %.3f\n", perimeter);
+        printf("\tarea = %.3f\n", area);
+
     } else {
         printf("Incorrect input.\n");
     }
