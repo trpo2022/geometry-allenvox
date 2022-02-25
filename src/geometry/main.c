@@ -52,6 +52,14 @@ int main()
             perimeter += sides[i];
         }
 
+        float semiperimeter = perimeter / 2;
+
+        float area = semiperimeter;
+        for (int i = 0; i < 3; i++) {
+            area *= semiperimeter - sides[i];
+        }
+        area = sqrtf(area);
+
     } else {
         printf("Incorrect input.\n");
     }
