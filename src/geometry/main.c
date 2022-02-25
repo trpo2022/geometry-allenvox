@@ -32,6 +32,11 @@ int main()
             points[i].y = atof(strtok(NULL, delims));
         }
 
+        if (points[3].x != points[0].x || points[3].y != points[0].y) {
+            printf("Error with handling the first/last point of the "
+                   "triangle.\nCheck if your data is correct.\n");
+        }
+
     } else {
         printf("Incorrect input.\n");
     }
