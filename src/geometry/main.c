@@ -29,6 +29,9 @@ int main()
         float perimeter = 2 * PI * radius;
         float area = PI * radius * radius;
 
+        printf("\tperimeter = %.3f\n", perimeter);
+        printf("\tarea = %.3f\n", area);
+
     } else if (strcmp(token, "triangle") == 0) {
         struct Point points[4];
 
