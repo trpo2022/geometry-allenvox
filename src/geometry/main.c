@@ -20,6 +20,10 @@ int main()
     if (strcmp(token, "circle") == 0) {
         struct Point point;
 
+        point.x = atof(strtok(NULL, delims));
+        point.y = atof(strtok(NULL, delims));
+        float radius = atof(strtok(NULL, delims));
+
     } else if (strcmp(token, "triangle") == 0) {
         struct Point points[4];
 
