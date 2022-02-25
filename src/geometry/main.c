@@ -27,6 +27,11 @@ int main()
     } else if (strcmp(token, "triangle") == 0) {
         struct Point points[4];
 
+        for (int i = 0; i < 4; i++) {
+            points[i].x = atof(strtok(NULL, delims));
+            points[i].y = atof(strtok(NULL, delims));
+        }
+
     } else {
         printf("Incorrect input.\n");
     }
