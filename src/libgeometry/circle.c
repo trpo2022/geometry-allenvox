@@ -1,11 +1,11 @@
 #include "circle.h"
-#define PI 3.141592653589
+#include <math.h>
 float calculateCirclePerimeter(float radius)
 {
-    return 2 * PI * radius;
+    return 2 * M_PI * radius;
 }
 
 float calculateCircleArea(float radius)
 {
-    return PI * radius * radius;
+    return M_PI * radius * radius;
 }
