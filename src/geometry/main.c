@@ -53,6 +53,6 @@ int main()
     } else {
         printf("Incorrect input.\n");
     }
-
+    free(input);
     return 0;
 }
