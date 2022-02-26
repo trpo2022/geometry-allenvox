@@ -1,7 +1,7 @@
 #include "input_read.h"
-#include <libgeometry/circle.h>
-#include <libgeometry/point.h>
-#include <libgeometry/triangle.h>
+#include "libgeometry/circle.h"
+#include "libgeometry/point.h"
+#include "libgeometry/triangle.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -53,5 +53,6 @@ int main()
     } else {
         printf("Incorrect input.\n");
     }
+
     return 0;
 }
