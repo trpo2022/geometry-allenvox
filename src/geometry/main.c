@@ -16,17 +16,16 @@ int main()
     char* token = strtok(input, delims);
 
     if (strcmp(token, "circle") == 0) {
-        struct Point point;
+        struct Point p;
 
-        point.x = atof(strtok(NULL, delims));
-        point.y = atof(strtok(NULL, delims));
+        p.x = atof(strtok(NULL, delims));
+        p.y = atof(strtok(NULL, delims));
         float radius = atof(strtok(NULL, delims));
 
         float perimeter = calculateCirclePerimeter(radius);
         float area = calculateCircleArea(radius);
 
-        printf("\tperimeter = %.3f\n", perimeter);
-        printf("\tarea = %.3f\n", area);
+        printCircleInfo(p.x, p.y, radius, perimeter, area);
 
     } else if (strcmp(token, "triangle") == 0) {
         struct Point points[4];
@@ -44,8 +43,7 @@ int main()
         float perimeter = calculateTrianglePerimeter(points);
         float area = calculateTriangleArea(points);
 
-        printf("\tperimeter = %.3f\n", perimeter);
-        printf("\tarea = %.3f\n", area);
+        printTriangleInfo(points, perimeter, area);
 
     } else if (strcmp(token, "q") == 0) {
         return 0;
