@@ -29,7 +29,5 @@ obj/triangle.o: src/libgeometry/triangle.c
 obj/main.o: src/geometry/main.c
 	gcc $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
-
-
 clean:
 	rm bin/* obj/*
