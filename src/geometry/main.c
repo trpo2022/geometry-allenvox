@@ -16,6 +16,7 @@ int main()
     char* token = strtok(input, delims);
 
     if (strcmp(token, "circle") == 0) {
+        printf("\n%s:\n", token);
         struct Point p;
 
         p.x = atof(strtok(NULL, delims));
@@ -28,6 +29,7 @@ int main()
         printCircleInfo(p.x, p.y, radius, perimeter, area);
 
     } else if (strcmp(token, "triangle") == 0) {
+        printf("\n%s:\n", token);
         struct Point points[4];
 
         for (int i = 0; i < 4; i++) {
