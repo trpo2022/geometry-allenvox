@@ -15,10 +15,8 @@ float calculateCircleArea(float radius)
 void printCircleInfo(
         float x, float y, float radius, float perimeter, float area)
 {
-    char* figure = "circle";
-    printf("\n%s:\n\tcenter = (%.3f %.3f)\n\tradius = %.3f\n\tperimeter = "
+    printf("\tcenter = (%.3f %.3f)\n\tradius = %.3f\n\tperimeter = "
            "%.3f\n\tarea = %.3f\n\n",
-           figure,
            x,
            y,
            radius,

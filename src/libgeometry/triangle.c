@@ -33,8 +33,7 @@ float calculateTriangleArea(struct Point points[4])
 
 void printTriangleInfo(struct Point points[4], float perimeter, float area)
 {
-    char* figure = "triangle";
-    printf("\n%s:\n\tpoints:\n", figure);
+    printf("\tpoints:\n");
     for (int i = 0; i < 3; i++) {
         printf("\t\t%d: (%.3f, %.3f)\n", i + 1, points[i].x, points[i].y);
     }
