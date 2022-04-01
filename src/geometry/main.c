@@ -2,57 +2,63 @@
 #include "libgeometry/circle.h"
 #include "libgeometry/point.h"
 #include "libgeometry/triangle.h"
+#include "object.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-int main()
+void runIn(int i)
 {
     char* input = malloc(sizeof(char) * 32);
+    char* token = NULL;
     initInput(input);
+    char *delims = "( ,)";
+    switch (check_object(input, &token)) {
+    case 0:
+        printf("\n%d. %s:\n", i, token);
+        struct Circle circle;
 
-    char delims[] = "( ,)";
-    char* token = strtok(input, delims);
+        circle.center.x = atof(strtok(NULL, delims));
+        circle.center.y = atof(strtok(NULL, delims));
+        circle.radius = atof(strtok(NULL, delims));
 
-    if (strcmp(token, "circle") == 0) {
-        printf("\n%s:\n", token);
-        struct Point p;
+        float circlePerimeter = calculateCirclePerimeter(circle.radius);
+        float circleArea = calculateCircleArea(circle.radius);
 
-        p.x = atof(strtok(NULL, delims));
-        p.y = atof(strtok(NULL, delims));
-        float radius = atof(strtok(NULL, delims));
+        printCircleInfo(circle, circlePerimeter, circleArea);
+        break;
 
-        float perimeter = calculateCirclePerimeter(radius);
-        float area = calculateCircleArea(radius);
-
-        printCircleInfo(p.x, p.y, radius, perimeter, area);
-
-    } else if (strcmp(token, "triangle") == 0) {
-        printf("\n%s:\n", token);
-        struct Point points[4];
+    case 1:
+        printf("\n%d. %s:\n", i, token);
+        struct Triangle triangle;
 
         for (int i = 0; i < 4; i++) {
-            points[i].x = atof(strtok(NULL, delims));
-            points[i].y = atof(strtok(NULL, delims));
+            triangle.points[i].x = atof(strtok(NULL, delims));
+            triangle.points[i].y = atof(strtok(NULL, delims));
         }
 
-        if (points[3].x != points[0].x || points[3].y != points[0].y) {
+        if (triangle.points[3].x != triangle.points[0].x
+            || triangle.points[3].y != triangle.points[0].y) {
             printf("Error with handling the first/last point of the "
                    "triangle.\nCheck if your data is correct.\n");
         }
 
-        float perimeter = calculateTrianglePerimeter(points);
-        float area = calculateTriangleArea(points);
+        float trianglePerimeter = calculateTrianglePerimeter(triangle.points);
+        float triangleArea = calculateTriangleArea(triangle.points);
 
-        printTriangleInfo(points, perimeter, area);
+        printTriangleInfo(triangle, trianglePerimeter, triangleArea);
+        break;
 
-    } else if (strcmp(token, "q") == 0) {
-        return 0;
-
-    } else {
+    default:
         printf("Incorrect input.\n");
     }
+
     free(input);
+}
+
+int main()
+{
+    runIn(1);
     return 0;
 }
