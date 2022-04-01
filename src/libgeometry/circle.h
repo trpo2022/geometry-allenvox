@@ -1,6 +1,11 @@
 #pragma once
+#include "point.h"
+
+struct Circle {
+    struct Point center;
+    float radius;
+};
 
 float calculateCirclePerimeter(float radius);
 float calculateCircleArea(float radius);
-void printCircleInfo(
-        float x, float y, float radius, float perimeter, float area);
+void printCircleInfo(struct Circle circle, float perimeter, float area);
