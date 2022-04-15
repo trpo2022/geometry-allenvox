@@ -2,13 +2,13 @@
 #include "libgeometry/circle.h"
 #include "libgeometry/point.h"
 #include "libgeometry/triangle.h"
-#include "object.h"
-
+#include "libgeometry/intersection.h"
+#include "libgeometry/object.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-void runIn(int i)
+void getObject(int i, object *obj)
 {
     char* input = malloc(sizeof(char) * 32);
     char* token = NULL;
@@ -23,10 +23,9 @@ void runIn(int i)
         circle.center.y = atof(strtok(NULL, delims));
         circle.radius = atof(strtok(NULL, delims));
 
-        float circlePerimeter = calculateCirclePerimeter(circle.radius);
-        float circleArea = calculateCircleArea(circle.radius);
-
-        printCircleInfo(circle, circlePerimeter, circleArea);
+        obj->circle = circle;
+        obj->type = CIRCLE;
+        printCircleInfo(circle);
         break;
 
     case 1:
@@ -44,21 +43,23 @@ void runIn(int i)
                    "triangle.\nCheck if your data is correct.\n");
         }
 
-        float trianglePerimeter = calculateTrianglePerimeter(triangle.points);
-        float triangleArea = calculateTriangleArea(triangle.points);
-
-        printTriangleInfo(triangle, trianglePerimeter, triangleArea);
+        obj->triangle = triangle;
+        obj->type = TRIANGLE;
+        printTriangleInfo(triangle);
         break;
 
     default:
         printf("Incorrect input.\n");
     }
-
     free(input);
 }
 
 int main()
 {
-    runIn(1);
+    object objects[3];
+    for(int i = 0; i < 3; i++) {
+        getObject(i+1, &objects[i]);
+    }
+    intersections(objects);
     return 0;
 }
