@@ -2,6 +2,11 @@ CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I src -I thirdparty -MMD
 DIR_GUARD = @mkdir -p $(@D)
 
+ifndef VERBOSE
+.SILENT:
+endif
+
+.PHONY: all
 all: bin/geometry
 
 -include obj/*.d obj/test/*.d
@@ -29,12 +34,13 @@ obj/intersection.o: src/libgeometry/intersection.c
 obj/main.o: src/geometry/main.c
 	gcc $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
-obj/object.o: src/geometry/object.c
+obj/object.o: src/libgeometry/object.c
 	gcc $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
 clean:
-	rm bin/* obj/*
+	rm -rf bin/* obj/* obj/test/*
 
+.PHONY: test
 test: bin/geometry-test
 
 bin/geometry-test: obj/test/main.o obj/test/test.o obj/input_read.o obj/object.o obj/circle.o obj/point.o obj/triangle.o obj/intersection.o obj/libgeometry.a
@@ -47,5 +53,5 @@ obj/test/main.o: test/main.c
 obj/test/test.o: test/test.c
 	gcc $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
-obj/libgeometry.a: obj/circle.o obj/point.o obj/triangle.o obj/intersection.o
+obj/libgeometry.a: obj/circle.o obj/point.o obj/triangle.o obj/intersection.o obj/object.o
 	ar rcs $@ $^
