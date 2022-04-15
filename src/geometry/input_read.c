@@ -5,5 +5,5 @@ void initInput(char array[32])
 {
     char prefix[] = "(geometry) ";
     printf("%s", prefix);
-    scanf("%[^\n]", array);
+    scanf(" %[^\n]", array);
 }
