@@ -8,4 +8,4 @@ struct Triangle {
 float calculateSide(struct Point point1, struct Point point2);
 float calculateTrianglePerimeter(struct Point points[4]);
 float calculateTriangleArea(struct Point points[4]);
-void printTriangleInfo(struct Triangle triangle, float perimeter, float area);
+void printTriangleInfo(struct Triangle triangle);
