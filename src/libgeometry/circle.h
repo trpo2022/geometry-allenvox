@@ -8,4 +8,4 @@ struct Circle {
 
 float calculateCirclePerimeter(float radius);
 float calculateCircleArea(float radius);
-void printCircleInfo(struct Circle circle, float perimeter, float area);
+void printCircleInfo(struct Circle circle);

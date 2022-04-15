@@ -13,13 +13,13 @@ float calculateCircleArea(float radius)
     return M_PI * radius * radius;
 }
 
-void printCircleInfo(struct Circle circle, float perimeter, float area)
+void printCircleInfo(struct Circle circle)
 {
-    printf("\tcenter = (%.3f %.3f)\n\tradius = %.3f\n\tperimeter = "
-           "%.3f\n\tarea = %.3f\n\n",
+    printf("\tcenter = (%.3f %.3f)\n\tradius = %.6f\n\tperimeter = "
+           "%.6f\n\tarea = %.6f\n\n",
            circle.center.x,
            circle.center.y,
            circle.radius,
-           perimeter,
-           area);
+           calculateCirclePerimeter(circle.radius),
+           calculateCircleArea(circle.radius));
 }
