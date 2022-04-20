@@ -2,10 +2,6 @@ CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I src -I thirdparty -MMD
 DIR_GUARD = @mkdir -p $(@D)
 
-ifndef VERBOSE
-.SILENT:
-endif
-
 .PHONY: all
 all: bin/geometry
 
