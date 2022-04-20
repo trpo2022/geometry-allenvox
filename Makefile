@@ -40,7 +40,7 @@ clean:
 test: bin/geometry-test
 
 bin/geometry-test: obj/test/main.o obj/test/test.o obj/input_read.o obj/object.o obj/circle.o obj/point.o obj/triangle.o obj/intersection.o obj/libgeometry.a
-	gcc $(CFLAGS) $(CPPFLAGS) -o $@ $^
+	gcc $(CFLAGS) $(CPPFLAGS) -o $@ $^ -lm
 
 obj/test/main.o: test/main.c
 	$(DIR_GUARD)
