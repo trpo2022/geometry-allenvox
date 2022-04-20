@@ -53,5 +53,5 @@ obj/test/main.o: test/main.c
 obj/test/test.o: test/test.c
 	gcc $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
-obj/libgeometry.a: obj/circle.o obj/point.o obj/triangle.o obj/intersection.o obj/object.o
+obj/libgeometry.a: obj/circle.o obj/point.o obj/triangle.o obj/intersection.o obj/object.o obj/input_read.o
 	ar rcs $@ $^
