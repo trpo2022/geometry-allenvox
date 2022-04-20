@@ -1,7 +1,7 @@
 #pragma once
 #include "circle.h"
-#include "triangle.h"
 #include "object.h"
+#include "triangle.h"
 int circleIntersectsCircle(struct Circle c1, struct Circle c2);
 int circleIntersectsTriangle(struct Circle circle, struct Triangle triangle);
 int triangleIntersectsTriangle(struct Triangle t1, struct Triangle t2);

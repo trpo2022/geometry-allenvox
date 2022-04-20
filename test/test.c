@@ -1,18 +1,18 @@
-#include <ctest.h>
-#include "libgeometry/object.h"
 #include "libgeometry/circle.h"
+#include "libgeometry/intersection.h"
+#include "libgeometry/object.h"
 #include "libgeometry/point.h"
 #include "libgeometry/triangle.h"
-#include "libgeometry/intersection.h"
-#include <string.h>
+#include <ctest.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define DELIMS "( ,)"
 
 CTEST(check_object_circle, correct)
 {
     char input[32] = "circle(1 0, 6)\0";
-    char *token;
+    char* token;
     const int expected = 0;
     const int result = check_object(input, &token);
     ASSERT_EQUAL(expected, result);
@@ -21,7 +21,7 @@ CTEST(check_object_circle, correct)
 CTEST(check_object_circle, incorrect_input_1)
 {
     char input[32] = "cicle(1 0, 6)\0";
-    char *token;
+    char* token;
     const int expected = 0;
     const int result = check_object(input, &token);
     ASSERT_NOT_EQUAL(expected, result);
@@ -30,7 +30,7 @@ CTEST(check_object_circle, incorrect_input_1)
 CTEST(check_object_circle, incorrect_input_2)
 {
     char input[32] = " cle(1 0, 6)\0";
-    char *token;
+    char* token;
     const int expected = 0;
     const int result = check_object(input, &token);
     ASSERT_NOT_EQUAL(expected, result);
@@ -39,7 +39,7 @@ CTEST(check_object_circle, incorrect_input_2)
 CTEST(check_object_circle, incorrect_input_3)
 {
     char input[32] = "circol(1 0, 6)\0";
-    char *token;
+    char* token;
     const int expected = 0;
     const int result = check_object(input, &token);
     ASSERT_NOT_EQUAL(expected, result);
@@ -48,7 +48,7 @@ CTEST(check_object_circle, incorrect_input_3)
 CTEST(check_object_circle, incorrect_input_4)
 {
     char input[32] = "circlee(1 0, 6)\0";
-    char *token;
+    char* token;
     const int expected = 0;
     const int result = check_object(input, &token);
     ASSERT_NOT_EQUAL(expected, result);
@@ -57,7 +57,7 @@ CTEST(check_object_circle, incorrect_input_4)
 CTEST(check_object_circle, incorrect_input_5)
 {
     char input[32] = "(0 0, 6)\0";
-    char *token;
+    char* token;
     const int expected = 0;
     const int result = check_object(input, &token);
     CTEST_LOG("check object circle end");
@@ -65,7 +65,7 @@ CTEST(check_object_circle, incorrect_input_5)
 }
 
 CTEST(calculate_circle_perimeter, correct)
-{   
+{
     float radius = 6;
     const float expected = 37;
     const float result = calculateCirclePerimeter(radius);
@@ -83,7 +83,7 @@ CTEST(calculate_circle_area, correct)
 
 CTEST(calculate_triangle_perimeter, correct)
 {
-    struct Point points[4] = {{0,0},{2,2},{3,-2},{0,0}};
+    struct Point points[4] = {{0, 0}, {2, 2}, {3, -2}, {0, 0}};
     const float expected = 10.5;
     const float result = calculateTrianglePerimeter(points);
     ASSERT_EQUAL(expected, result);
@@ -91,7 +91,7 @@ CTEST(calculate_triangle_perimeter, correct)
 
 CTEST(calculate_triangle_area, correct)
 {
-    struct Point points[4] = {{0,0},{2,2},{3,-2},{0,0}};
+    struct Point points[4] = {{0, 0}, {2, 2}, {3, -2}, {0, 0}};
     const float expected = 4.999998;
     const float result = calculateTriangleArea(points);
     ASSERT_EQUAL(expected, result);
@@ -132,7 +132,7 @@ CTEST(check_circle_radius, correct)
 CTEST(check_object_triangle, correct)
 {
     char input[32] = "triangle(0 0, 2 2, 3 -2, 0 0)\0";
-    char *token;
+    char* token;
     const int expected = 1;
     const int result = check_object(input, &token);
     ASSERT_EQUAL(expected, result);
@@ -141,7 +141,7 @@ CTEST(check_object_triangle, correct)
 CTEST(check_object_triangle, incorrect_input_1)
 {
     char input[32] = "tiragnel(0 0, 2 2, 3 -2, 0 0)\0";
-    char *token;
+    char* token;
     const int expected = 1;
     const int result = check_object(input, &token);
     ASSERT_NOT_EQUAL(expected, result);
@@ -150,7 +150,7 @@ CTEST(check_object_triangle, incorrect_input_1)
 CTEST(check_object_triangle, incorrect_input_2)
 {
     char input[32] = "tirangle(0 0, 2 2, 3 -2, 0 0)\0";
-    char *token;
+    char* token;
     const int expected = 1;
     const int result = check_object(input, &token);
     ASSERT_NOT_EQUAL(expected, result);
@@ -160,8 +160,8 @@ CTEST(check_object_triangle, incorrect_input_2)
 CTEST(check_triangle_points, correct)
 {
     char input[32] = "triangle(0 1, 2 2, 3 -2, 0 1)\0";
-    char *token = strtok(input, DELIMS);
-    for(int i = 0; i < 8; i++) {
+    char* token = strtok(input, DELIMS);
+    for (int i = 0; i < 8; i++) {
         token = strtok(NULL, DELIMS);
     }
     const float expected = 1;
@@ -172,8 +172,8 @@ CTEST(check_triangle_points, correct)
 CTEST(check_triangle_points, incorrect)
 {
     char input[32] = "triangle(0 1, 2 2, 3 2, 0 0)\0";
-    char *token = strtok(input, DELIMS);
-    for(int i = 0; i < 8; i++) {
+    char* token = strtok(input, DELIMS);
+    for (int i = 0; i < 8; i++) {
         token = strtok(NULL, DELIMS);
     }
     const float expected = 1;

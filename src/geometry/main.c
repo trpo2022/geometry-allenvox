@@ -1,19 +1,19 @@
 #include "input_read.h"
 #include "libgeometry/circle.h"
-#include "libgeometry/point.h"
-#include "libgeometry/triangle.h"
 #include "libgeometry/intersection.h"
 #include "libgeometry/object.h"
+#include "libgeometry/point.h"
+#include "libgeometry/triangle.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-void getObject(int i, object *obj)
+void getObject(int i, object* obj)
 {
     char* input = malloc(sizeof(char) * 32);
     char* token = NULL;
     initInput(input);
-    char *delims = "( ,)";
+    char* delims = "( ,)";
     switch (check_object(input, &token)) {
     case 0:
         printf("\n%d. %s:\n", i, token);
@@ -57,8 +57,8 @@ void getObject(int i, object *obj)
 int main()
 {
     object objects[3];
-    for(int i = 0; i < 3; i++) {
-        getObject(i+1, &objects[i]);
+    for (int i = 0; i < 3; i++) {
+        getObject(i + 1, &objects[i]);
     }
     intersections(objects);
     return 0;

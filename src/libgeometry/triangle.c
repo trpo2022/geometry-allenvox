@@ -40,5 +40,7 @@ void printTriangleInfo(struct Triangle triangle)
                triangle.points[i].x,
                triangle.points[i].y);
     }
-    printf("\tperimeter = %.6f\n\tarea = %.6f\n\n", calculateTrianglePerimeter(triangle.points), calculateTriangleArea(triangle.points));
+    printf("\tperimeter = %.6f\n\tarea = %.6f\n\n",
+           calculateTrianglePerimeter(triangle.points),
+           calculateTriangleArea(triangle.points));
 }

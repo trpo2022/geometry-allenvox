@@ -2,8 +2,8 @@
 #include "circle.h"
 #include "triangle.h"
 #include <math.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 int circleIntersectsCircle(struct Circle c1, struct Circle c2)
 {
@@ -30,25 +30,25 @@ int circleIntersectsTriangle(struct Circle circle, struct Triangle triangle)
     int c1y = centrey - triangle.points[0].y;
 
     int radiusSqr = circle.radius * circle.radius;
-    int c1sqr = c1x*c1x + c1y*c1y;
+    int c1sqr = c1x * c1x + c1y * c1y;
 
-    if(c1sqr <= radiusSqr) {
+    if (c1sqr <= radiusSqr) {
         return 0;
     }
 
     int c2x = centrex - triangle.points[1].x;
     int c2y = centrey - triangle.points[1].y;
-    int c2sqr = c2x*c2x + c2y*c2y;
+    int c2sqr = c2x * c2x + c2y * c2y;
 
-    if(c2sqr <= radiusSqr) {
+    if (c2sqr <= radiusSqr) {
         return 0;
     }
 
     int c3x = centrex - triangle.points[2].x;
     int c3y = centrey - triangle.points[2].y;
-    int c3sqr = c3x*c3x + c3y*c3y;
+    int c3sqr = c3x * c3x + c3y * c3y;
 
-    if(c3sqr <= radiusSqr) {
+    if (c3sqr <= radiusSqr) {
         return 0;
     }
 
@@ -61,44 +61,45 @@ int circleIntersectsTriangle(struct Circle circle, struct Triangle triangle)
     int e3x = triangle.points[3].x - triangle.points[2].x;
     int e3y = triangle.points[3].y - triangle.points[2].y;
 
-    if (e1y*c1x - e1x*c1y >= 0 && e2y*c2x - e2x*c2y >= 0 && e3y*c3x - e3x*c3y >= 0) {
+    if (e1y * c1x - e1x * c1y >= 0 && e2y * c2x - e2x * c2y >= 0
+        && e3y * c3x - e3x * c3y >= 0) {
         return 0;
     }
 
-    int k = c1x*e1x + c1y*e1y;
+    int k = c1x * e1x + c1y * e1y;
     int len = 0;
 
-    if(k > 0) {
-        len = e1x*e1x + e1y*e1y;
-        k = k*k/len;
+    if (k > 0) {
+        len = e1x * e1x + e1y * e1y;
+        k = k * k / len;
 
-        if(k < len) {
-            if(c1sqr - k <= radiusSqr) {
+        if (k < len) {
+            if (c1sqr - k <= radiusSqr) {
                 return 0;
             }
         }
     }
 
-    k = c2x*e2x + c2y*e2y;
+    k = c2x * e2x + c2y * e2y;
 
-    if(k > 0) {
-        len = e2x*e2x + e2y*e2y;
-        k = k*k/len;
+    if (k > 0) {
+        len = e2x * e2x + e2y * e2y;
+        k = k * k / len;
 
-        if(k < len) {
-            if(c2sqr - k <= radiusSqr) {
+        if (k < len) {
+            if (c2sqr - k <= radiusSqr) {
                 return 0;
             }
         }
     }
 
-    k = c3x*e3x + c3y*e3y;
+    k = c3x * e3x + c3y * e3y;
 
-    if(k > 0) {
-        len = e3x*e3x + e3y*e3y;
-        k = k*k/len;
-        if(k < len) {
-            if(c3sqr - k <= radiusSqr) {
+    if (k > 0) {
+        len = e3x * e3x + e3y * e3y;
+        k = k * k / len;
+        if (k < len) {
+            if (c3sqr - k <= radiusSqr) {
                 return 0;
             }
         }
@@ -153,26 +154,47 @@ int triangleIntersectsTriangle(struct Triangle t1, struct Triangle t2)
     return -1;
 }
 
-void intersections(object objects[3]) {
+void intersections(object objects[3])
+{
     printf("Intersections:\n");
-    for(int i = 0; i < 2; i++) {
-        for(int k = 1; k < 3; k++) {
-            if(i == k) continue;
-            if(objects[i].type == CIRCLE && objects[k].type == CIRCLE) {
-                if(circleIntersectsCircle(objects[i].circle, objects[k].circle) == 0) {
-                    printf("\t%d. circle intersects %d. circle\n", i+1, k+1);
+    for (int i = 0; i < 2; i++) {
+        for (int k = 1; k < 3; k++) {
+            if (i == k)
+                continue;
+            if (objects[i].type == CIRCLE && objects[k].type == CIRCLE) {
+                if (circleIntersectsCircle(objects[i].circle, objects[k].circle)
+                    == 0) {
+                    printf("\t%d. circle intersects %d. circle\n",
+                           i + 1,
+                           k + 1);
                 }
-            } else if (objects[i].type == TRIANGLE && objects[k].type == CIRCLE) {
-                if(circleIntersectsTriangle(objects[k].circle, objects[i].triangle) == 0) {
-                    printf("\t%d. triangle intersects %d. circle\n", i+1, k+1);
+            } else if (
+                    objects[i].type == TRIANGLE && objects[k].type == CIRCLE) {
+                if (circleIntersectsTriangle(
+                            objects[k].circle, objects[i].triangle)
+                    == 0) {
+                    printf("\t%d. triangle intersects %d. circle\n",
+                           i + 1,
+                           k + 1);
                 }
-            } else if (objects[i].type == CIRCLE && objects[k].type == TRIANGLE) {
-                if(circleIntersectsTriangle(objects[i].circle, objects[k].triangle) == 0) {
-                    printf("\t%d. circle intersects %d. triangle\n", i+1, k+1);
+            } else if (
+                    objects[i].type == CIRCLE && objects[k].type == TRIANGLE) {
+                if (circleIntersectsTriangle(
+                            objects[i].circle, objects[k].triangle)
+                    == 0) {
+                    printf("\t%d. circle intersects %d. triangle\n",
+                           i + 1,
+                           k + 1);
                 }
-            } else if (objects[i].type == TRIANGLE && objects[k].type == TRIANGLE) {
-                if(triangleIntersectsTriangle(objects[i].triangle, objects[k].triangle) == 0) {
-                    printf("\t%d. triangle intersects %d. triangle\n", i+1, k+1);
+            } else if (
+                    objects[i].type == TRIANGLE
+                    && objects[k].type == TRIANGLE) {
+                if (triangleIntersectsTriangle(
+                            objects[i].triangle, objects[k].triangle)
+                    == 0) {
+                    printf("\t%d. triangle intersects %d. triangle\n",
+                           i + 1,
+                           k + 1);
                 }
             }
         }
