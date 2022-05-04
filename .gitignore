@@ -1,0 +1,9 @@
+*.[oa]
+*~
+*swp
+bin/
+obj/
+*.txt
+main
+.vscode/
+*.DS_Store
