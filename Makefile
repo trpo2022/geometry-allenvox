@@ -36,6 +36,7 @@ obj/intersection.o: src/libgeometry/intersection.c
 obj/object.o: src/libgeometry/object.c
 	gcc $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
+.PHONY: clean
 clean:
 	rm -rf bin/* obj/* obj/test/*
 
