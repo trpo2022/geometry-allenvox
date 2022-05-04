@@ -15,6 +15,7 @@ obj/libgeometry.a: obj/circle.o obj/point.o obj/triangle.o obj/intersection.o ob
 	ar rcs $@ $^
 
 obj/main.o: src/geometry/main.c
+	$(DIR_GUARD)
 	gcc $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
 obj/input_read.o: src/geometry/input_read.c
