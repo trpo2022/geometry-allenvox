@@ -7,9 +7,15 @@ all: bin/geometry
 
 -include obj/*.d obj/test/*.d
 
-bin/geometry: obj/input_read.o obj/object.o obj/circle.o obj/point.o obj/triangle.o obj/intersection.o obj/main.o obj/libgeometry.a
+bin/geometry: obj/main.o obj/libgeometry.a
 	$(DIR_GUARD)
 	gcc $(CFLAGS) $(CPPFLAGS) -o $@ $^ -lm
+
+obj/libgeometry.a: obj/circle.o obj/point.o obj/triangle.o obj/intersection.o obj/object.o obj/input_read.o
+	ar rcs $@ $^
+
+obj/main.o: src/geometry/main.c
+	gcc $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
 obj/input_read.o: src/geometry/input_read.c
 	$(DIR_GUARD)
@@ -27,9 +33,6 @@ obj/triangle.o: src/libgeometry/triangle.c
 obj/intersection.o: src/libgeometry/intersection.c
 	gcc $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
-obj/main.o: src/geometry/main.c
-	gcc $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
-
 obj/object.o: src/libgeometry/object.c
 	gcc $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
@@ -39,7 +42,7 @@ clean:
 .PHONY: test
 test: bin/geometry-test
 
-bin/geometry-test: obj/test/main.o obj/test/test.o obj/input_read.o obj/object.o obj/circle.o obj/point.o obj/triangle.o obj/intersection.o obj/libgeometry.a
+bin/geometry-test: obj/test/main.o obj/test/test.o obj/libgeometry.a
 	gcc $(CFLAGS) $(CPPFLAGS) -o $@ $^ -lm
 
 obj/test/main.o: test/main.c
@@ -48,6 +51,3 @@ obj/test/main.o: test/main.c
 
 obj/test/test.o: test/test.c
 	gcc $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
-
-obj/libgeometry.a: obj/circle.o obj/point.o obj/triangle.o obj/intersection.o obj/object.o obj/input_read.o
-	ar rcs $@ $^
